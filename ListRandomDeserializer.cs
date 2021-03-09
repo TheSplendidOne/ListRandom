@@ -11,6 +11,8 @@ namespace ListRandom
         {
             using BinaryReader reader = new BinaryReader(stream, Encoding.Default, true);
             var nodeCount = ReadNodeCount(reader);
+            if (nodeCount == 0)
+                return new ListRandom();
             var randomNodeNumbers = ReadRandomNodeNumbers(reader, nodeCount);
             var nodes = ReadNodes(reader, nodeCount);
             return CombineRandomNodes(nodes, randomNodeNumbers);

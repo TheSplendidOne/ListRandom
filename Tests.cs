@@ -81,5 +81,19 @@ namespace ListRandom
             deserializedList.Head.Previous.Should().Be(null);
             deserializedList.Tail.Next.Should().Be(null);
         }
+
+        [Test]
+        public void EmptyListRandom_SerializeAndDeserializeCorrectly()
+        {
+            var emptyList = new ListRandom();
+            var stream = new MemoryStream();
+            emptyList.Serialize(stream);
+            stream.Position = 0;
+            var deserializedList = new ListRandom();
+            deserializedList.Deserialize(stream);
+            deserializedList.Count.Should().Be(0);
+            deserializedList.Head.Should().Be(null);
+            deserializedList.Tail.Should().Be(null);
+        }
     }
 }
